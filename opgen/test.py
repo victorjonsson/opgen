@@ -10,9 +10,8 @@ class TestParser(unittest.TestCase):
     def test_load_files(self):
         dirpath = os.path.dirname(os.path.realpath(__file__))
         pages = Utils.find_pages(dirpath+'/../pages/')
-        assert len(pages) is 1
-        assert pages.index(dirpath+'/../pages/home.html') is 0
-                
+        assert len(pages) is 4
+
     def test_parse_attr(self):
         self.assertEqual(parser._parse_attr(' hello="world"', "hello"), "world")
         self.assertEqual(parser._parse_attr(' other="hello" hello="world" ', "hello"), "world")

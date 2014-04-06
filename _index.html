@@ -20,14 +20,8 @@
 	    <div class="navbar navbar-inverse navbar-fixed-top">
 	        <div class="navbar-inner">
 	            <div class="container">
-	            
 	                <a class="brand" href="index.html" id="logo">One Page Website</a>
-	
-	                <div class="top-menu">	                    
-	                    <a href="https://github.com/victorjonsson/opgen" target="_blank">
-	                        <i class="icon-white icon-bookmark"></i>
-	                        Github
-	                    </a>
+	                <div class="top-menu">
 	                    <span class="search-wrapper">
 	                        <label>
 	                            <i class="icon-white icon-search"></i>
@@ -35,7 +29,6 @@
 	                        <input type="search" id="page-search" placeholder="Search..." />
 	                    </span>
 	                </div>
-	                     
 	            </div>
 	        </div>
 	    </div>
@@ -52,9 +45,14 @@
 		<div class="span3">
 			<ul class="nav nav-list well" id="submenu-container">
 				{{#pages}}
-				<li>
-					<a href="#{{slug}}">{{label}}</a>
-				</li>				
+                    {{#menu}}
+                        {{#header}}
+                            <li class="nav-header">{{header}}</li>
+                        {{/header}}
+                        <li>
+                            <a href="#{{slug}}">{{label}}</a>
+                        </li>
+                    {{/menu}}
 				{{/pages}}
 			</ul>
 		</div>
@@ -62,12 +60,13 @@
 	
 	<div class="container" id="footer">
 		<p>
-            This website was built using <a href="https://github.com/victorjonsson/opgen">opgen</a>
+            This website was built using <a href="https://github.com/victorjonsson/opgen">OPgen</a>
         </p>
 	</div>
 		
 </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="static/script/main.js"></script>
 
 </body>

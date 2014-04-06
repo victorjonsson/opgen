@@ -74,8 +74,6 @@ p {
     font-size: 14px;
     font-weight: bold;
     color: rgba(255,255,255, .8);
-    border: rgba(255,255,255, .2) solid 1px;
-    border-width: 0 1px;
     border-right-color: rgba(0,0,0, .2);
 }
 
@@ -105,6 +103,7 @@ p {
 .top-menu a:last-child,
 .top-menu span:last-child {
     border-right: 0;
+    padding-right: 0;
 }
 
 .top-menu label {
@@ -122,9 +121,8 @@ p {
     line-height: 13px;
     padding: 0 2px;
     font-size: 12px;
-    width: 100px;
+    width: 120px;
     margin-top: 3px;
-    margin-right: 20px;
 }
 
 
@@ -172,6 +170,7 @@ a.active .arr {
 #footer {
     border-top:solid 1px #EEE;
     padding-top: 15px;
+    margin-top: 15px;
 }
 
 #footer p {

@@ -21,17 +21,27 @@ class ContentParser:
         """
         slug = ''
         label = ''
-        parent = ''
+        header = ''
         name = ''
+        index = ''
+        menu = True
         chunks = content.split('page-ref ')
         if len(chunks) == 2:
             subchunks = chunks[1].split('>')
             content = '>'.join(subchunks[1:]).strip()
             slug = self._parse_attr(subchunks[0], 'slug')
             label = self._parse_attr(subchunks[0], 'label')
-            parent = self._parse_attr(subchunks[0], 'parent')
-            
-        return {"content": content, "label":label, "name":name, "slug":slug, "parent":parent}        
+            header = self._parse_attr(subchunks[0], 'header')
+            menu = self._parse_attr(subchunks[0], 'menu')
+            index = self._parse_attr(subchunks[0], 'index')
+
+        if menu == 'false':
+            menu = False
+        else:
+            menu = True
+
+        return {"content": content, "label":label, "name":name,
+                "slug":slug, "header":header, "menu":menu, "index":index}
         
     def _parse_attr(self, htmlstring, attr):
         """

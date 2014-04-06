@@ -21,6 +21,9 @@ class Generator:
         pages = []
         for pagefile in pagefiles:
             page_obj = parser.file_to_content_dict(pagefile)
-            pages.append(page_obj)
+            if page_obj['index'].isdigit():
+                pages.insert(int(page_obj['index']), page_obj)
+            else:
+                pages.append(page_obj)
             continue
         return pystache.render(template_html, {'pages':pages})    
