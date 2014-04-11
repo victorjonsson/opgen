@@ -12,11 +12,12 @@ class ContentParser:
         """
         return self.parse_content( Utils.file_content(filepath) )
         
-    def parse_content(self, content):
+    def parse_content(self, content, defslug=''):
         """
         Create a FileContent object out of given file content
         
         @param string content
+        @param string defslug
         @return: {}
         """
         slug = ''
@@ -42,7 +43,10 @@ class ContentParser:
         else:
             menu = True
 
-        sections = self._parse_sections(content)
+        if not slug:
+            slug = defslug
+
+        sections = self._parse_sections(content, slug)
 
         return {"content": content, "label":label, "name":name, "has_sections":len(sections) > 0,
                 "slug":slug, "header":header, "menu":menu, "index":index, "sections":sections}
@@ -57,19 +61,19 @@ class ContentParser:
         except IndexError:
             return ''
 
-    def _parse_sections(self, str):
+    def _parse_sections(self, str, parentslug=''):
         """
-        @return list
+        @return {}
         """
-        found = {}
-        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\:]+))', str, flags=re.IGNORECASE)
+        found = []
+        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\: \-\_]+))', str, flags=re.IGNORECASE)
         for arr in matches:
             if len(arr) == 3:
                 parts = arr[2].split(':')
                 if len(parts) == 2:
-                    found[parts[0]] = parts[1]
+                    found.append({'slug': parentslug+'_'+parts[0], 'label':parts[1]})
                 else:
-                    found[arr[2]] = arr[2]
+                    found.append({'slug': parentslug+'_'+arr[2], 'label':arr[2]})
         return found
     
 class Utils:

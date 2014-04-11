@@ -39,7 +39,7 @@
                             if( pageSection ) {
                                 // window.location.hash = '#' + Pager.currentPage;
                                 Pager.lastSection = pageSection;
-                                var $section = $('*[data-page-section="'+pageSection+'"]');
+                                var $section = $('*[data-page-section^="'+pageSection+'"]');
                                 $('html, body').animate({
                                     scrollTop: $section.offset().top - 50
                                 }, 500);
@@ -88,7 +88,7 @@
     /*
      When page hash changes
      */
-    $(window).bind('hashchange', function() {
+    $(window).bind('hashchange', function(evt) {
 
         var href = window.location.hash.substr(1),
             args = href.split('=')[1];

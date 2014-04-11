@@ -31,10 +31,12 @@ class TestParser(unittest.TestCase):
         assert content['slug'] is ''
 
     def test_parse_section(self):
-        content = parser.parse_content('<p>...</p> <h3 data-page-section="test:value">Testing</h3> <p></p> <h3 data-page-section="test2">Test2</h3>');
+        content = parser.parse_content('<p>...</p> <h3 data-page-section="test:value">Testing</h3> <p></p> <h3 data-page-section="test2">Test2</h3>', 'parent');
         assert len(content['sections']) is 2
-        self.assertEqual(content['sections']['test'], 'value')
-        self.assertEqual(content['sections']['test2'], 'test2')
+        self.assertEqual(content['sections'][0]['slug'], 'parent_test')
+        self.assertEqual(content['sections'][0]['label'], 'value')
+        self.assertEqual(content['sections'][1]['slug'], 'parent_test2')
+        self.assertEqual(content['sections'][1]['label'], 'test2')
 
 if __name__ == '__main__':
     unittest.main()
