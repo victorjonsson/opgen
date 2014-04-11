@@ -1,6 +1,6 @@
 # One-Page Generator
 
-OPgen is a small command line tool that can generate one-page websites (flat file). Organize your pages in separate<br /> files and **OPgen** will collect their content and insert them in your template (_index.html).
+OPgen is a small command line tool that can generate one-page websites (flat file). Organize your pages in separate files and **OPgen** will collect their content and insert them in your template (_index.html).
 
 **Example:**<br />http://formvalidator.net/
 
