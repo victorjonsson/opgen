@@ -14,26 +14,27 @@
 </head>
 <body>
 
-<div class="container">
-
-	<header>
-	    <div class="navbar navbar-inverse navbar-fixed-top">
-	        <div class="navbar-inner">
-	            <div class="container">
-	                <a class="brand" href="index.html" id="logo">One Page Website</a>
-	                <div class="top-menu">
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="page-container">
+                <a class="brand" href="index.html" id="logo">OPgen</a>
+                <div class="top-menu">
 	                    <span class="search-wrapper">
 	                        <label>
-	                            <i class="icon-white icon-search"></i>
-	                        </label>
+                                <i class="icon-white icon-search"></i>
+                            </label>
 	                        <input type="search" id="page-search" placeholder="Search..." />
 	                    </span>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</header>
-	
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="page-container">
+
 	<div class="row-fluid" id="content">
 		<div class="span9">
 			{{#pages}}
@@ -52,17 +53,26 @@
                         <li>
                             <a href="#{{slug}}">{{label}}</a>
                         </li>
+                        {{#has_sections}}
+                            <li>
+                                <ul>
+                                    {{#sections}}
+                                        <li><a href="#{{slug}}">{{label}}</a></li>
+                                    {{/sections}}
+                                </ul>
+                            </li>
+                        {{/has_sections}}
                     {{/menu}}
 				{{/pages}}
 			</ul>
 		</div>
 	</div>
 	
-	<div class="container" id="footer">
+	<footer id="footer">
 		<p>
             This website was built using <a href="https://github.com/victorjonsson/opgen">OPgen</a>
         </p>
-	</div>
+	</footer>
 		
 </div>
 

@@ -20,6 +20,8 @@ h2, h1 {
 
 h2 {
     padding-top: 20px;
+    font-size: 30px;
+    padding-bottom: 0;
 }
 
 h3 {
@@ -196,12 +198,20 @@ a.active .arr {
 }
 
 
+
 /* * * * * * * * * * * * * * * * *
-* FOOTER
+* PAGES
 * * * * * * * * * * * * * * * * */
+
+.page-container {
+    width: 960px;
+    max-width: 95%;
+    margin: 0 auto;
+}
 
 #content {
     padding-top: 60px;
+    min-height: 400px;
     overflow: auto;
     clear: both;
 }

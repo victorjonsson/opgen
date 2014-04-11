@@ -1,5 +1,6 @@
 import unittest
 import os
+import pprint
 
 from parser import ContentParser, Utils
 
@@ -17,7 +18,7 @@ class TestParser(unittest.TestCase):
         self.assertEqual(parser._parse_attr(' other="hello" hello="world" ', "hello"), "world")
         self.assertEqual(parser._parse_attr(' other="hello" hello="world war 3" ', "hello"), "world war 3")
         self.assertEqual(parser._parse_attr(' hello=\'worldo\'', "hello"), "worldo")
-        
+
     def test_parse(self):
         content = parser.parse_content('<page-ref slug="my-slug" label=\'My label\' /> <p>the content...</p>')
         self.assertEqual('My label', content['label'])
@@ -29,6 +30,11 @@ class TestParser(unittest.TestCase):
         assert content['content'] is 'as is'
         assert content['slug'] is ''
 
+    def test_parse_section(self):
+        content = parser.parse_content('<p>...</p> <h3 data-page-section="test:value">Testing</h3> <p></p> <h3 data-page-section="test2">Test2</h3>');
+        assert len(content['sections']) is 2
+        self.assertEqual(content['sections']['test'], 'value')
+        self.assertEqual(content['sections']['test2'], 'test2')
 
 if __name__ == '__main__':
     unittest.main()

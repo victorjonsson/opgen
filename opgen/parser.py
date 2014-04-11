@@ -1,5 +1,5 @@
 import os
-
+import re
 
 class ContentParser:
 
@@ -17,7 +17,7 @@ class ContentParser:
         Create a FileContent object out of given file content
         
         @param string content
-        @return: {content, slug, name, label, parent}
+        @return: {}
         """
         slug = ''
         label = ''
@@ -26,6 +26,8 @@ class ContentParser:
         index = ''
         menu = True
         chunks = content.split('page-ref ')
+        sections = {}
+
         if len(chunks) == 2:
             subchunks = chunks[1].split('>')
             content = '>'.join(subchunks[1:]).strip()
@@ -40,8 +42,10 @@ class ContentParser:
         else:
             menu = True
 
-        return {"content": content, "label":label, "name":name,
-                "slug":slug, "header":header, "menu":menu, "index":index}
+        sections = self._parse_sections(content)
+
+        return {"content": content, "label":label, "name":name, "has_sections":len(sections) > 0,
+                "slug":slug, "header":header, "menu":menu, "index":index, "sections":sections}
         
     def _parse_attr(self, htmlstring, attr):
         """
@@ -51,7 +55,22 @@ class ContentParser:
         try:
             return htmlstring.split(attr+'=')[1].lstrip('"\'').split('"')[0].split('\'')[0]
         except IndexError:
-            return ''   
+            return ''
+
+    def _parse_sections(self, str):
+        """
+        @return list
+        """
+        found = {}
+        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\:]+))', str, flags=re.IGNORECASE)
+        for arr in matches:
+            if len(arr) == 3:
+                parts = arr[2].split(':')
+                if len(parts) == 2:
+                    found[parts[0]] = parts[1]
+                else:
+                    found[arr[2]] = arr[2]
+        return found
     
 class Utils:
     

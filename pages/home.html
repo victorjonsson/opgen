@@ -1,7 +1,20 @@
 <page-ref label="Home" slug="home" index="0" />
 
-<h1>Home</h1>
+<h1>One-Page Generator</h1>
 
 <p>
-    Lorem te ipsum...
+    OPgen is a small command line tool that can generate one-page websites (flat file).
+    Organize your pages in separate files and OPgen will collect their content and insert
+    them in your template (_index.html).
 </p>
+
+
+<h2>Setup</h2>
+
+<ol>
+    <li>Clone this project from <a href="https://github.com/victorjonsson/opgen">Github</a> where suiteable on your server.</li>
+    <li>Run <em>$ pip install pystache</em>.</li>
+    <li>That's it! Add your own pages to the pages directory and generate the website by calling
+        <em>$ python generator.py</em> in your console. Use the flag <em>-w</em> if you
+        want OPgen to automatically generate the website when you make an edit to your project.</li>
+</ol>
