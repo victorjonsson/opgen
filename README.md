@@ -37,7 +37,7 @@ $(window).on('pageChange', function(evt, page, args, section) {
 });
 ```
 
-The application will change to a "mobile" state when the window width is lower than 400px. Use the event `viewModeChange` to
+The website will change to a "mobile" state when the window width is lower than 400px. Use the event `viewModeChange` to
 detect when this happens.
 
 ```js
