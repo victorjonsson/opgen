@@ -175,6 +175,7 @@ a.active .arr {
 
 .submenu li {
     padding-top: 7px;
+    list-style-type: none;
 }
 
 
@@ -230,11 +231,50 @@ a.active .arr {
     clear: both;
 }
 
+#main-col {
+    float: left;
+    margin-left: 0;
+    margin-right: 2.127659574468085%;
+}
+
+#side-col {
+    float: right;
+}
+
 .page {
     display: none;
+    padding-right: 20px;
 }
 
 
+    /* * * MOBILE MODE * * */
+
+    body.mobile .page {
+        padding-right: 0 10px;
+    }
+
+    body.mobile #side-col {
+        float: none;
+        clear: both;
+        width: auto;
+        margin: 0;
+    }
+
+    body.mobile #main-col {
+        float: none;
+        width: auto;
+        margin: 0;
+    }
+
+    .nav-toggle {
+        font-weight: bold;
+        font-size: 120%;
+        display: block;
+        padding: 8px;
+        background: #F2F2F2;
+        color: #777 !important;
+        text-decoration: none !important;
+    }
 
 /* * * * * * * * * * * * * * * * *
 * SEARCH
