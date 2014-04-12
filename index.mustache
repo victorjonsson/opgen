@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My one-page-flat-file website</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Abel" type="text/css"/>
+    <link rel="stylesheet" href="static/style/main.css" type="text/css"/>
+</head>
+<body>
+
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="page-container">
+                <a class="brand" href="index.html" id="logo">OPgen</a>
+
+                <div class="top-menu">
+	                    <span class="search-wrapper">
+	                        <label>
+                                <i class="icon-white icon-search"></i>
+                            </label>
+	                        <input type="search" id="page-search" placeholder="Search..."/>
+	                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="page-container">
+
+    <div class="row-fluid" id="content">
+        <div class="span9">
+            {{#pages}}
+                <div class="page {{slug}}" id="{{slug}}">
+                    {{{content}}}
+                </div>
+            {{/pages}}
+        </div>
+        <div class="span3">
+            <ul class="nav nav-list well" id="submenu-container">
+                {{#pages}}
+                    {{#menu}}
+                        {{#header}}
+                            <li class="nav-header">{{header}}</li>
+                        {{/header}}
+                        <li>
+                            <a href="#{{slug}}">{{label}}</a>
+                        </li>
+                        {{#has_sections}}
+                            <li>
+                                <ul>
+                                    {{#sections}}
+                                        <li><a href="#{{slug}}">{{label}}</a></li>
+                                    {{/sections}}
+                                </ul>
+                            </li>
+                        {{/has_sections}}
+                    {{/menu}}
+                {{/pages}}
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <p>
+            This website was built using <a href="https://github.com/victorjonsson/opgen">OPgen</a>
+        </p>
+    </footer>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/script/main.js"></script>
+
+</body>
+</html>

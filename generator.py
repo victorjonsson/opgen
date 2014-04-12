@@ -8,7 +8,7 @@ from opgen import Generator, DirectoryWatcher, FileWatcher
 
 parser = optparse.OptionParser(usage='%prog [<flags>]')
 
-parser.add_option('--template', default='_index.html',
+parser.add_option('--template', default='index.mustache',
                   help='File to use as template [%default]')
 parser.add_option('--file', default='index.html',
                   help='Name of the generated file [%default]')
