@@ -1,4 +1,5 @@
 import os
+import codecs
 import pystache
 from parser import ContentParser, Utils
 from watcher import DirectoryWatcher, FileWatcher
@@ -10,7 +11,7 @@ class Generator:
 
     def generate(self, pagedir, templatefile, newfile):           
         html = self._create_new_html(pagedir, Utils.file_content(templatefile))
-        newfile_obj = open(newfile, 'w')
+        newfile_obj = codecs.open(newfile, 'w', encoding='utf-8')
         newfile_obj.write(html)
         newfile_obj.close()
         return html

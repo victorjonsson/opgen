@@ -247,34 +247,45 @@ a.active .arr {
 }
 
 
-    /* * * MOBILE MODE * * */
+/* * * MOBILE MODE * * */
 
-    body.mobile .page {
-        padding-right: 0 10px;
-    }
+body.mobile .page {
+    padding-right: 0 10px;
+}
 
-    body.mobile #side-col {
-        float: none;
-        clear: both;
-        width: auto;
-        margin: 0;
-    }
+body.mobile #side-col {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0;
+}
 
-    body.mobile #main-col {
-        float: none;
-        width: auto;
-        margin: 0;
-    }
+body.mobile #main-col {
+    float: none;
+    width: auto;
+    margin: 0;
+}
 
-    .nav-toggle {
-        font-weight: bold;
-        font-size: 120%;
-        display: block;
-        padding: 8px;
-        background: #F2F2F2;
-        color: #777 !important;
-        text-decoration: none !important;
-    }
+.nav-toggle {
+    font-weight: bold;
+    font-size: 120%;
+    display: block;
+    padding: 8px;
+    background: #F2F2F2;
+    color: #777 !important;
+    text-decoration: none !important;
+}
+
+body.mobile .form-horizontal .control-label {
+    width: auto;
+    display: block;
+    float: none;
+    text-align: left;
+}
+
+body.mobile .form-horizontal .controls {
+    margin-left: 0;
+}
 
 /* * * * * * * * * * * * * * * * *
 * SEARCH

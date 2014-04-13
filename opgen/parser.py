@@ -1,4 +1,5 @@
 import os
+import codecs
 import re
 
 class ContentParser:
@@ -66,7 +67,7 @@ class ContentParser:
         @return {}
         """
         found = []
-        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\: \-\_]+))', str, flags=re.IGNORECASE)
+        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\: \-\_\(\)]+))', str, flags=re.IGNORECASE)
         for arr in matches:
             if len(arr) == 3:
                 parts = arr[2].split(':')
@@ -95,14 +96,18 @@ class Utils:
         return pages
     
     @staticmethod
-    def file_content(filepath):
+    def file_content(filepath, encoding='utf-8'):
         """
         Get content of a file as a string
         
         @param string directory
+        @param string encoding
         @return: string
         """
-        fileobj = open(filepath, 'r')
+        if encoding == 'utf-8':
+            fileobj = codecs.open(filepath, 'r', encoding='utf-8')
+        else:
+            fileobj = open(filepath, 'r')
         content = fileobj.read()
         fileobj.close()
         return content

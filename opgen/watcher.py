@@ -29,7 +29,7 @@ class FileWatcher:
         self.has_changed() # generate checksum
         
     def has_changed(self):
-        new_checksum = hashlib.md5( Utils.file_content(self.path) ).hexdigest()
+        new_checksum = hashlib.md5( Utils.file_content(self.path, 'ascii') ).hexdigest()
         changed = self.checksum != new_checksum
         self.checksum = new_checksum
         return changed
