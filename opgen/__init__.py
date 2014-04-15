@@ -3,8 +3,13 @@ import codecs
 import pystache
 from parser import ContentParser, Utils
 from watcher import DirectoryWatcher, FileWatcher
+try:
+    from Queue import PriorityQueue
+except RuntimeError:
+    from queue import PriorityQueue
 
-__all__ = ['Generator', 'ContentParser', 'Utils', 'DirectoryWatcher', 'FileWatcher']
+
+__all__ = ['Generator', 'ContentParser', 'DirectoryWatcher', 'FileWatcher']
 
 
 class Generator:
@@ -19,12 +24,19 @@ class Generator:
     def _create_new_html(self, pagedir, template_html):
         parser = ContentParser()
         pagefiles = Utils.find_pages(pagedir)
-        pages = []
+        pagequeue = PriorityQueue()
+        numpages = len(pagefiles)
         for pagefile in pagefiles:
             page_obj = parser.file_to_content_dict(pagefile)
             if page_obj['index'].isdigit():
-                pages.insert(int(page_obj['index']), page_obj)
+                pagequeue.put([int(page_obj['index']), page_obj])
             else:
-                pages.append(page_obj)
+                pagequeue.put([numpages, page_obj])
             continue
-        return pystache.render(template_html, {'pages':pages})    
+        return pystache.render(template_html, {'pages':self._page_queue_to_list(pagequeue)})
+
+    def _page_queue_to_list(self, queue):
+        pages = []
+        while( queue.empty() is False ):
+            pages.append( queue.get()[1] )
+        return pages
