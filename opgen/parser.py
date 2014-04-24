@@ -67,7 +67,7 @@ class ContentParser:
         @return {}
         """
         found = []
-        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\: \-\_\(\)]+))', str, flags=re.IGNORECASE)
+        matches = re.findall('(data-page-section\=(\'|")([a-z\_\-A-Z0-9\: \/\&\;\-\_\(\)]+))', str, flags=re.IGNORECASE)
         for arr in matches:
             if len(arr) == 3:
                 parts = arr[2].split(':')
