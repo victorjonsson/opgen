@@ -29,7 +29,7 @@ Options:
 
 ## jQuery Events
 
-Use the event `pageChange` to detect when the visitor has navigated to a new page
+Use the event `pageChange` or `beforePageChange` to detect when the visitor has navigated to a new page
 
 ```js
 $(window).on('pageChange', function(evt, page, args, section) {
